@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "385493680601",
+    "project_id": "rps-first-project",
+    "storage_bucket": "rps-first-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385493680601:android:0c1cb9607bbdc50eda59c8",
+        "android_client_info": {
+          "package_name": "com.example.pratice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdJMNaLczvAuTMLsiwMiIL0wGkCysb7wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
