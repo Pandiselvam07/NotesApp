@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pratice/constants/Routes.dart';
 import 'package:pratice/firebase_options.dart';
+import 'package:pratice/main.dart';
+import 'package:pratice/utilities/ShowErrorDialog.dart';
 import 'package:pratice/views/Register_view.dart';
 import 'dart:developer' as devtools show log;
 
@@ -61,20 +63,24 @@ class _LoginViewState extends State<LoginView> {
                 final email = _email.text;
                 final password = _password.text;
                 try {
-                  final userCredential =
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
                     email: email,
                     password: password,
                   );
-                  Navigator.of(context)
+                  final user = Navigator.of(context)
                       .pushNamedAndRemoveUntil(notesroute, (route) => false);
-                  devtools.log(userCredential.toString());
                 } on FirebaseAuthException catch (e) {
                   if (e.code == "invalid-credential") {
-                    devtools.log('Invalid Credential');
-                  } else if (e.code == "Wrong-Password") {
-                    devtools.log('Wrong Password');
+                    await showErrorDialog(context, "Invalid Credential");
+                  } else if (e.code == "invalid-email") {
+                    await showErrorDialog(context, "Invalid Email");
+                  } else if (e.code == "channel-error") {
+                    await showErrorDialog(context, "Channel Error");
+                  } else {
+                    await showErrorDialog(context, "Error ${e.code}");
                   }
+                } catch (e) {
+                  await showErrorDialog(context, e.toString());
                 }
               },
               child: const Text(
