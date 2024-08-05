@@ -1,3 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:pratice/firebase_options.dart';
+
 import 'Auth_user.dart';
 import 'Auth_exceptions.dart';
 import 'Auth_provider.dart';
@@ -12,7 +15,7 @@ class FirebaseAuthProvider implements AuthProvider {
     required String password,
   }) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -24,8 +27,9 @@ class FirebaseAuthProvider implements AuthProvider {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == "weak-password") {
-      } else if (e.code == "email-already-in-use") {
         throw WeakPasswordAuthException();
+      } else if (e.code == "email-already-in-use") {
+        throw EmailAlreadyInUseAuthException();
       } else if (e.code == "invalid-email") {
         throw InvalidEmailAuthException();
       } else if (e.code == "channel-error") {
@@ -98,5 +102,12 @@ class FirebaseAuthProvider implements AuthProvider {
     } else {
       throw UserNotLoggedInAuthException();
     }
+  }
+
+  @override
+  Future<void> initialize() async {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
 }

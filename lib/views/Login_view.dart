@@ -1,12 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pratice/constants/Routes.dart';
-import 'package:pratice/firebase_options.dart';
-import 'package:pratice/main.dart';
+import 'package:pratice/services/auth/Auth_service.dart';
 import 'package:pratice/utilities/ShowErrorDialog.dart';
-import 'package:pratice/views/Register_view.dart';
 import 'dart:developer' as devtools show log;
+import 'package:pratice/services/auth/Auth_exceptions.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -63,30 +60,23 @@ class _LoginViewState extends State<LoginView> {
                 final email = _email.text;
                 final password = _password.text;
                 try {
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: email,
-                    password: password,
-                  );
-                  final user = FirebaseAuth.instance.currentUser;
-                  if (user?.emailVerified ?? false) {
-                    final user = Navigator.of(context)
+                  await AuthService.firebase()
+                      .logIn(email: email, password: password);
+                  final user = AuthService.firebase().currentUser;
+                  if (user?.isEmailVerified ?? false) {
+                    Navigator.of(context)
                         .pushNamedAndRemoveUntil(notesroute, (route) => false);
                   } else {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        verifyemailroute, (route) => false);
+                    Navigator.of(context).pushNamed(verifyemailroute);
                   }
-                } on FirebaseAuthException catch (e) {
-                  if (e.code == "invalid-credential") {
-                    await showErrorDialog(context, "Invalid Credential");
-                  } else if (e.code == "invalid-email") {
-                    await showErrorDialog(context, "Invalid Email");
-                  } else if (e.code == "channel-error") {
-                    await showErrorDialog(context, "Channel Error");
-                  } else {
-                    await showErrorDialog(context, "Error ${e.code}");
-                  }
-                } catch (e) {
-                  await showErrorDialog(context, e.toString());
+                } on InvalidCredentialAuthException {
+                  await showErrorDialog(context, "Invalid Credential");
+                } on InvalidEmailAuthException {
+                  await showErrorDialog(context, "Invalid Email");
+                } on ChannelErrorAuthException {
+                  await showErrorDialog(context, "Channel Error");
+                } on GenericAuthException {
+                  await showErrorDialog(context, "Authentication Error");
                 }
               },
               child: const Text(
