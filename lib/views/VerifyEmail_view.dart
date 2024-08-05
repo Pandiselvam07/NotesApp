@@ -15,14 +15,13 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
       appBar: AppBar(
         title: const Text(
           "Verify Email",
-          style: TextStyle(color: Colors.blue),
         ),
         backgroundColor: Colors.blue,
       ),
       body: Column(
         children: [
           const Text(
-              "We've sent you email verification . Please open it ti verify"),
+              "We've sent you email verification . Please open it to verify"),
           const Text(
               "If you haven't received email verification yet . Click the below button to resend"),
           TextButton(
