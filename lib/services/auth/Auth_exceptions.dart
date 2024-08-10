@@ -19,3 +19,10 @@ class ChannelErrorAuthException implements Exception {}
 class GenericAuthException implements Exception {}
 
 class UserNotLoggedInAuthException implements Exception {}
+
+//others
+class NotInitializedAuthException implements Exception {}
+
+class UserNotFoundAuthException implements Exception {}
+
+class WrongPasswordAuthException implements Exception {}
