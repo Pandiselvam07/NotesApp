@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:pratice/services/crud/Crud_exceptions.dart';
-import 'package:pratice/services/crud/Notes_service.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -83,7 +82,6 @@ class NotesService {
     final userId = await db.insert(userTable, {
       emailColumn: email.toLowerCase(),
     });
-
     return DatabaseUser(
       id: userId,
       email: email,

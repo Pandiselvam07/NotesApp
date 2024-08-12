@@ -3,6 +3,7 @@ import 'package:pratice/constants/Routes.dart';
 import 'package:pratice/enums/Menu_action.dart';
 import 'package:pratice/services/auth/Auth_service.dart';
 import 'package:pratice/services/crud/Notes_service.dart';
+import 'package:pratice/views/notes/new_note_view.dart';
 
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
@@ -30,9 +31,15 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Main UI"),
+        title: const Text("Your notes"),
         backgroundColor: Colors.blue,
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(newnoteroute);
+            },
+            icon: const Icon(Icons.add),
+          ),
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               switch (value) {
