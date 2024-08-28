@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pratice/utilities/dialogs/Generic_dialog.dart';
 
 Future<bool> showDeleteDialog(BuildContext context) {
-  return showGenericDialog(
+  return showGenericDialog<bool>(
     context: context,
     title: "Delete",
     content: "Are you sure you want delete?",
