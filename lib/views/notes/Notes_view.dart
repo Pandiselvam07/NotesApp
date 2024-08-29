@@ -4,7 +4,6 @@ import 'package:pratice/enums/Menu_action.dart';
 import 'package:pratice/services/auth/Auth_service.dart';
 import 'package:pratice/services/cloud/Cloud_note.dart';
 import 'package:pratice/services/cloud/Firebase_cloud_storage.dart';
-import 'package:pratice/services/crud/Notes_service.dart';
 import 'package:pratice/utilities/dialogs/Logout_dialog.dart';
 import 'package:pratice/views/notes/notes_list_view.dart';
 
