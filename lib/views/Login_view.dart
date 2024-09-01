@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pratice/constants/Routes.dart';
 import 'package:pratice/services/auth/Auth_service.dart';
 import 'package:pratice/services/auth/Auth_exceptions.dart';
+import 'package:pratice/services/auth/bloc/Auth_bloc.dart';
+import 'package:pratice/services/auth/bloc/Auth_event.dart';
 import 'package:pratice/utilities/dialogs/Error_dialog.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -59,15 +62,12 @@ class _LoginViewState extends State<LoginView> {
                 final email = _email.text;
                 final password = _password.text;
                 try {
-                  await AuthService.firebase()
-                      .logIn(email: email, password: password);
-                  final user = AuthService.firebase().currentUser;
-                  if (user?.isEmailVerified ?? false) {
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil(notesroute, (route) => false);
-                  } else {
-                    Navigator.of(context).pushNamed(verifyemailroute);
-                  }
+                  context.read<AuthBloc>().add(
+                        AuthEventLogIn(
+                          email,
+                          password,
+                        ),
+                      );
                 } on InvalidCredentialAuthException {
                   await showErrorDialog(context, "Invalid Credential");
                 } on InvalidEmailAuthException {
