@@ -4,10 +4,10 @@ import 'package:pratice/services/cloud/Cloud_note.dart';
 import 'package:pratice/services/cloud/Cloud_storage_exceptions.dart';
 
 class FirebaseCloudStorage {
+  factory FirebaseCloudStorage() => _shared;
   static final FirebaseCloudStorage _shared =
       FirebaseCloudStorage._sharedInstance();
   FirebaseCloudStorage._sharedInstance();
-  factory FirebaseCloudStorage() => _shared;
 
   final notes = FirebaseFirestore.instance.collection('notes');
 
