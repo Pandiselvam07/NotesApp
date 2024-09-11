@@ -5,6 +5,7 @@ import 'package:pratice/services/auth/Firebase_auth_provider.dart';
 import 'package:pratice/services/auth/bloc/Auth_bloc.dart';
 import 'package:pratice/services/auth/bloc/Auth_event.dart';
 import 'package:pratice/services/auth/bloc/Auth_state.dart';
+import 'package:pratice/views/ForgotPassword_View.dart';
 import 'package:pratice/views/Login_view.dart';
 import 'package:pratice/views/Register_view.dart';
 import 'package:pratice/views/VerifyEmail_view.dart';
@@ -56,6 +57,8 @@ class _HomePageState extends State<HomePage> {
           return const VerifyEmailView();
         } else if (state is AuthStateLoggedOut) {
           return const LoginView();
+        } else if (state is AuthStateForgotPassword) {
+          return const ForgotpasswordView();
         } else if (state is AuthStateRegistering) {
           return const RegisterView();
         } else {

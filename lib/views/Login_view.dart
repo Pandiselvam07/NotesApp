@@ -52,13 +52,15 @@ class _LoginViewState extends State<LoginView> {
           title: const Text("Login"),
           backgroundColor: Colors.blue,
         ),
-        body: SingleChildScrollView(
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               TextField(
                 controller: _email,
                 keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
+                autofocus: true,
                 enableSuggestions: false,
                 decoration:
                     const InputDecoration(hintText: "Enter your email id"),
@@ -67,6 +69,7 @@ class _LoginViewState extends State<LoginView> {
                 controller: _password,
                 obscureText: true,
                 autocorrect: false,
+                autofocus: true,
                 enableSuggestions: false,
                 decoration:
                     const InputDecoration(hintText: "Enter your password"),
@@ -86,13 +89,22 @@ class _LoginViewState extends State<LoginView> {
               ),
               TextButton(
                 onPressed: () {
+                  context.read<AuthBloc>().add(const AuthEventForgotPassword());
+                },
+                child: const Text(
+                  "I forgot my password",
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
                   context.read<AuthBloc>().add(const AuthEventShouldRegister());
                 },
                 child: const Text(
                   "Not registered yet? Register here",
                   style: TextStyle(color: Colors.blue),
                 ),
-              )
+              ),
             ],
           ),
         ),
