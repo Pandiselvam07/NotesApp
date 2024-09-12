@@ -20,10 +20,10 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
         title: const Text(
           "Verify Email",
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.cyan,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(13.0),
         child: Column(
           children: [
             const Text(

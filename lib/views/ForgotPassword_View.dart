@@ -39,21 +39,21 @@ class _ForgotpasswordViewState extends State<ForgotpasswordView> {
           }
           if (state.exception != null) {
             await showErrorDialog(context,
-                "We could not process your request , make sure you are a registered user ");
+                "We could not process your request , make sure you have entered valid email ");
           }
         }
       },
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Forgot Password"),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.cyan,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(13.0),
           child: Column(
             children: [
               const Text(
-                "If you forgot your password , enter your registered email we will send you a password reset link",
+                "If you forgot your password , Enter your registered email we will send you a password reset link",
               ),
               TextField(
                 keyboardType: TextInputType.emailAddress,

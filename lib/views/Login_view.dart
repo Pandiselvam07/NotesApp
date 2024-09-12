@@ -50,10 +50,10 @@ class _LoginViewState extends State<LoginView> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Login"),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.cyan,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(13.0),
           child: Column(
             children: [
               TextField(
