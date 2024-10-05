@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
       builder: (context, state) {
+        //Bloc
         if (state is AuthStateLoggedIn) {
           return const NotesView();
         } else if (state is AuthStateNeedsVerification) {
