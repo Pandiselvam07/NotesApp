@@ -53,30 +53,46 @@ class _RegisterViewState extends State<RegisterView> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Register"),
+          title: const Text(
+            "Register",
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.cyan,
         ),
         body: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Column(
             children: [
+              const SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 controller: _email,
                 autocorrect: false,
                 autofocus: true,
                 enableSuggestions: false,
-                decoration:
-                    const InputDecoration(hintText: "Enter your email id"),
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan, width: 3),
+                        borderRadius: BorderRadius.circular(25)),
+                    hintText: "Enter you Email ID",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan),
+                        borderRadius: BorderRadius.circular(25))),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 10),
               TextField(
                 controller: _password,
                 obscureText: true,
                 autocorrect: false,
                 enableSuggestions: false,
-                decoration:
-                    const InputDecoration(hintText: "Enter your password"),
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan, width: 3),
+                        borderRadius: BorderRadius.circular(25)),
+                    hintText: "Enter your password",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan),
+                        borderRadius: BorderRadius.circular(25))),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -95,18 +111,24 @@ class _RegisterViewState extends State<RegisterView> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventLogOut());
-                },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
-                ),
-                child: const Text(
-                  "Already register ? Login here",
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
+              SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already register ? ",
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.read<AuthBloc>().add(const AuthEventLogOut());
+                    },
+                    child: Text(
+                      "Login here",
+                      style: TextStyle(color: Colors.cyan),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

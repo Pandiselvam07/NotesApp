@@ -45,7 +45,10 @@ class _ForgotpasswordViewState extends State<ForgotpasswordView> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Forgot Password"),
+          title: const Text(
+            "Forgot Password",
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.cyan,
         ),
         body: Padding(
@@ -55,14 +58,20 @@ class _ForgotpasswordViewState extends State<ForgotpasswordView> {
               const Text(
                 "If you forgot your password , Enter your registered email we will send you a password reset link",
               ),
+              const SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
                 autofocus: true,
                 controller: _controller,
-                decoration: const InputDecoration(
-                  hintText: "Enter your registered email",
-                ),
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan, width: 3),
+                        borderRadius: BorderRadius.circular(25)),
+                    hintText: "Enter your Registered Email",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan),
+                        borderRadius: BorderRadius.circular(25))),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -76,24 +85,19 @@ class _ForgotpasswordViewState extends State<ForgotpasswordView> {
                   backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
                 ),
                 child: const Text(
-                  "Send me password reset link",
+                  "Send password reset link",
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
+              const SizedBox(height: 12),
+              GestureDetector(
+                onTap: () {
                   context.read<AuthBloc>().add(const AuthEventLogOut());
                 },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
-                ),
-                child: const Text(
+                child: Text(
                   "Back to Login View",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
                 ),
               ),
             ],

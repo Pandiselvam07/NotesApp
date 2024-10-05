@@ -49,31 +49,47 @@ class _LoginViewState extends State<LoginView> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Login"),
+          title: const Text(
+            "Login",
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.cyan,
         ),
         body: Padding(
           padding: const EdgeInsets.all(13.0),
           child: Column(
             children: [
+              const SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 controller: _email,
                 autocorrect: false,
                 autofocus: true,
                 enableSuggestions: false,
-                decoration:
-                    const InputDecoration(hintText: "Enter your email id"),
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan, width: 3),
+                        borderRadius: BorderRadius.circular(25)),
+                    hintText: "Enter your Email ID",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan),
+                        borderRadius: BorderRadius.circular(25))),
               ),
-              SizedBox(height: 5),
+              SizedBox(height: 10),
               TextField(
                 controller: _password,
                 obscureText: true,
                 autocorrect: false,
                 autofocus: true,
                 enableSuggestions: false,
-                decoration:
-                    const InputDecoration(hintText: "Enter your password"),
+                decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan, width: 3),
+                        borderRadius: BorderRadius.circular(25)),
+                    hintText: "Enter your Password",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyan),
+                        borderRadius: BorderRadius.circular(25))),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -92,29 +108,38 @@ class _LoginViewState extends State<LoginView> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventForgotPassword());
-                },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
-                ),
-                child: const Text(
-                  "I forgot my password",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventShouldRegister());
-                },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
-                ),
-                child: const Text(
-                  "Not registered yet? Register here",
-                  style: TextStyle(color: Colors.white),
-                ),
+              const SizedBox(height: 12),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        context
+                            .read<AuthBloc>()
+                            .add(const AuthEventForgotPassword());
+                      },
+                      child: Text('Forgot Password')),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Not registered yet ? ",
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          context
+                              .read<AuthBloc>()
+                              .add(const AuthEventShouldRegister());
+                        },
+                        child: Text(
+                          "Register here",
+                          style: TextStyle(color: Colors.cyan),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),

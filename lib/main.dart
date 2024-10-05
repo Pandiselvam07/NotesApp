@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pratice/helper/loading/Loading_screen.dart';
 import 'package:pratice/services/auth/Firebase_auth_provider.dart';
 import 'package:pratice/services/auth/bloc/Auth_bloc.dart';
@@ -12,6 +10,8 @@ import 'package:pratice/views/VerifyEmail_view.dart';
 import 'package:pratice/constants/Routes.dart';
 import 'package:pratice/views/notes/Notes_view.dart';
 import 'package:pratice/views/notes/create _update_note_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
       builder: (context, state) {
+        //Bloc
         if (state is AuthStateLoggedIn) {
           return const NotesView();
         } else if (state is AuthStateNeedsVerification) {
