@@ -57,14 +57,15 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             children: [
               TextField(
-                controller: _email,
                 keyboardType: TextInputType.emailAddress,
+                controller: _email,
                 autocorrect: false,
                 autofocus: true,
                 enableSuggestions: false,
                 decoration:
                     const InputDecoration(hintText: "Enter your email id"),
               ),
+              SizedBox(height: 5),
               TextField(
                 controller: _password,
                 obscureText: true,
@@ -74,6 +75,7 @@ class _LoginViewState extends State<LoginView> {
                 decoration:
                     const InputDecoration(hintText: "Enter your password"),
               ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   final email = _email.text;

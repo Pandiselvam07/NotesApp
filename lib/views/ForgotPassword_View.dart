@@ -64,9 +64,7 @@ class _ForgotpasswordViewState extends State<ForgotpasswordView> {
                   hintText: "Enter your registered email",
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   final email = _controller.text;
