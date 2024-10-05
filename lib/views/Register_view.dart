@@ -77,7 +77,7 @@ class _RegisterViewState extends State<RegisterView> {
                 decoration:
                     const InputDecoration(hintText: "Enter your password"),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () async {
                   final email = _email.text;
                   final password = _password.text;
@@ -85,18 +85,24 @@ class _RegisterViewState extends State<RegisterView> {
                       .read<AuthBloc>()
                       .add(AuthEventRegister(email, password));
                 },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
                 child: const Text(
                   "Register",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   context.read<AuthBloc>().add(const AuthEventLogOut());
                 },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
                 child: const Text(
                   "Already register ? Login here",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.white),
                 ),
               )
             ],

@@ -74,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
                 decoration:
                     const InputDecoration(hintText: "Enter your password"),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () async {
                   final email = _email.text;
                   final password = _password.text;
@@ -82,27 +82,36 @@ class _LoginViewState extends State<LoginView> {
                         AuthEventLogIn(email, password),
                       );
                 },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
                 child: const Text(
                   "Login",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   context.read<AuthBloc>().add(const AuthEventForgotPassword());
                 },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
                 child: const Text(
                   "I forgot my password",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   context.read<AuthBloc>().add(const AuthEventShouldRegister());
                 },
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
                 child: const Text(
                   "Not registered yet? Register here",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ],

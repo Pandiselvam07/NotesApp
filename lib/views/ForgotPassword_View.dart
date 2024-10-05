@@ -64,20 +64,39 @@ class _ForgotpasswordViewState extends State<ForgotpasswordView> {
                   hintText: "Enter your registered email",
                 ),
               ),
-              TextButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 onPressed: () {
                   final email = _controller.text;
                   context
                       .read<AuthBloc>()
                       .add(AuthEventForgotPassword(email: email));
                 },
-                child: const Text("Send me password reset link"),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
+                child: const Text(
+                  "Send me password reset link",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   context.read<AuthBloc>().add(const AuthEventLogOut());
                 },
-                child: const Text("Back to Login View"),
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.cyan),
+                ),
+                child: const Text(
+                  "Back to Login View",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),
