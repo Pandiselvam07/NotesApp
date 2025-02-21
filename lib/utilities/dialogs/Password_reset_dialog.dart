@@ -7,7 +7,7 @@ Future<void> showPasswordRestSentDialog(BuildContext context) async {
     title: "Password Reset",
     content: "We have sent you password reset link , Please check your email",
     optionsBuilder: () => {
-      "ok": null,
+      "Ok": null,
     },
   );
 }

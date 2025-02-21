@@ -27,9 +27,12 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
         child: Column(
           children: [
             const Text(
-                "We've sent you email verification . Please open it to verify"),
+              "We've sent you email verification . Please open it to verify",
+              style: TextStyle(color: Colors.black),
+            ),
             const Text(
-                "If you haven't received email verification yet . Click the below button to resend"),
+                "If you haven't received email verification yet . Click the below button to resend",
+                style: TextStyle(color: Colors.black)),
             TextButton(
               onPressed: () async {
                 context

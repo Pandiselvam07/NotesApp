@@ -89,7 +89,10 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New Note"),
+        title: const Text(
+          "New Note",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.cyan,
         actions: [
           IconButton(
@@ -101,9 +104,20 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
                 Share.share(text);
               }
             },
-            icon: const Icon(Icons.share),
+            icon: const Icon(
+              Icons.share,
+              color: Colors.white,
+            ),
           ),
         ],
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            )),
       ),
       body: FutureBuilder(
         future: createOrGetExistingNote(context),
@@ -111,14 +125,30 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _setupTextControllerListener();
-              return TextField(
-                controller: _textController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: const InputDecoration(hintText: "Enter you notes"),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    TextField(
+                      controller: _textController,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.cyan, width: 3),
+                              borderRadius: BorderRadius.circular(10)),
+                          hintText: "Enter your notes",
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.cyan),
+                              borderRadius: BorderRadius.circular(10))),
+                    ),
+                  ],
+                ),
               );
             default:
-              return const CircularProgressIndicator();
+              return Center(child: const CircularProgressIndicator());
           }
         },
       ),

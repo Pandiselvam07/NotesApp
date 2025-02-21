@@ -31,16 +31,23 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your notes"),
+        title: const Text(
+          "Your notes",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.cyan,
         actions: [
           IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(createupdatenoteroute);
             },
-            icon: const Icon(Icons.add),
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
           PopupMenuButton<MenuAction>(
+            iconColor: Colors.white,
             onSelected: (value) async {
               switch (value) {
                 case MenuAction.logout:
@@ -82,10 +89,10 @@ class _NotesViewState extends State<NotesView> {
                   },
                 );
               } else {
-                return const CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               }
             default:
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
           }
         },
       ),
