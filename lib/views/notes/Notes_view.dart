@@ -8,6 +8,7 @@ import 'package:pratice/services/auth/bloc/Auth_event.dart';
 import 'package:pratice/services/cloud/Cloud_note.dart';
 import 'package:pratice/services/cloud/Firebase_cloud_storage.dart';
 import 'package:pratice/utilities/dialogs/Logout_dialog.dart';
+import 'package:pratice/views/add_image_page.dart';
 import 'package:pratice/views/notes/notes_list_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,6 +44,18 @@ class _NotesViewState extends State<NotesView> {
             },
             icon: const Icon(
               Icons.add,
+              color: Colors.white,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => AddImagePage(
+                        userId: userId,
+                      )));
+            },
+            icon: const Icon(
+              Icons.image,
               color: Colors.white,
             ),
           ),

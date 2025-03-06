@@ -1,3 +1,5 @@
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:pratice/helper/loading/Loading_screen.dart';
 import 'package:pratice/services/auth/Firebase_auth_provider.dart';
 import 'package:pratice/services/auth/bloc/Auth_bloc.dart';
@@ -8,13 +10,17 @@ import 'package:pratice/views/Login_view.dart';
 import 'package:pratice/views/Register_view.dart';
 import 'package:pratice/views/VerifyEmail_view.dart';
 import 'package:pratice/constants/Routes.dart';
+import 'package:pratice/views/add_image_page.dart';
 import 'package:pratice/views/notes/Notes_view.dart';
 import 'package:pratice/views/notes/create _update_note_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox<String>('imageBox');
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
